@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col mx-auto">
+              <div class="card">
+                <div class="card-header">
+                  <h4>Log in</h4>
+                </div>
+                <div class="card-body">
+                  <form #loginForm="ngForm" (ngSubmit)="login()">
+                    <div class="text-danger"></div>
+                    <div class="form-group">
+                      <input type="text" required [(ngModel)]="model.Username" name="username" class="form-control"
+                        placeholder="Username" />
+                      <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" required [(ngModel)]="model.Password" name="password" class="form-control"
+                        placeholder="Password" />
+                      <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" (ngSubmit)="login()" [disabled]="!loginForm.valid" class="btn btn-danger btn-block btn-lg">
+                        <i class="fas fa-sign-in-alt pr-1"></i>Log in
+                      </button>
+                    </div>
+                    <div class="form-group">
+                      <p>
+                        <a id="forgot-password" href="#" class="btn btn-link">
+                          <i class="fas fa-angle-double-right pr-1"></i>Forgot your password?
+                        </a>
+                      </p>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+      <section>
+        <h4>Use another service to log in.</h4>
+        <hr />
+        <!-- @{
+      if ((Model.ExternalLogins?.Count ?? 0) == 0)
+      {
+      <div>
+        <p>
+          There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this
+            article</a>
+          for details on setting up this ASP.NET application to support logging in via external services.
+        </p>
+      </div>
+      }
+      else
+      {
+      <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+        <div>
+          <p>
+            @foreach (var provider in Model.ExternalLogins)
+            {
+            <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+            }
+          </p>
+        </div>
+      </form>
+      }
+      } -->
+      </section>
+    </div>
+  </div>
+</div>

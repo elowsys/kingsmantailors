@@ -1,0 +1,26 @@
+<header id="mainHeader" class="{{ getBannerStyle() }}">
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-8 col-sm-8">
+        <h1><i class="{getFontAwesomeIcon()}"></i> {{ getModelTitle() }}</h1>
+      </div>
+      <!-- @if (Model.ShowAddButton)
+      { -->
+      <div *ngIf="getShowButton()" class="col-md-4 col-sm-4 text-right">
+        <!-- @if (string.IsNullOrEmpty(Model.ButtonId))
+        { -->
+        <a href="#" class="btn btn-danger btn-sm">
+          <i class="fas fa-plus"></i> Add {{ getHeaderTitle() }}
+        </a>
+        <!-- }
+        else
+        {
+        <button class="btn btn-danger btn-sm" id="@Model.ButtonId">
+          <i class="fas fa-plus"></i> Add @Model.HeaderTitle
+        </button>
+        } -->
+      </div>
+      <!-- } -->
+    </div>
+  </div>
+</header>
