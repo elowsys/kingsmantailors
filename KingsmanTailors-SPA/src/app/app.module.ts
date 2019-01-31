@@ -1,24 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ValueComponent } from './components/value/value.component';
+import { BsDropdownModule } from 'ngx-bootstrap';
+
+import { appRoutes } from './routes';
+import { AuthGuard } from './guards/auth.guard';
+
 import { ValuesService } from './services/values.service';
 import { AuthService } from './services/auth.service';
+import { ErrorInterceptorProvider } from './services/error.interceptor';
+import { AlertifyService } from './services/alertify.service';
+import { HeaderService } from './services/header.service';
+
+import { AppComponent } from './app.component';
+import { ValueComponent } from './components/value/value.component';
 import { NavComponent } from './components/nav/nav.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ShoppingCartMiniComponent } from './components/shopping-cart-mini/shopping-cart-mini.component';
 import { RegisterComponent } from './components/register/register.component';
-import { ErrorInterceptorProvider } from './services/error.interceptor';
-import { AlertifyService } from './services/alertify.service';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { AdminComponent } from './components/admin/admin.component';
+import { CartMiniComponent } from './components/cart-mini/cart-mini.component';
+import { AdminFabricComponent } from './components/admin-fabric/admin-fabric.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +40,10 @@ import { BsDropdownModule } from 'ngx-bootstrap';
     NotFoundComponent,
     HomeComponent,
     ShoppingCartMiniComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminComponent,
+    CartMiniComponent,
+    AdminFabricComponent
   ],
   imports: [
     BrowserModule,
@@ -39,124 +51,15 @@ import { BsDropdownModule } from 'ngx-bootstrap';
     AppRoutingModule,
     HttpClientModule,
     BsDropdownModule.forRoot(),
-    RouterModule.forRoot([
-      // { path: '', component: WorkareaComponent },
-      // { path: ':id', component: DeviceComponent },
-      // {
-      //   path: 'admin/audiovisual/:id',
-      //   component: AdminAudioVisualComponent
-      // },
-      // {
-      //   path: 'admin/audiovisual',
-      //   component: AdminAudioVisualComponent
-      // },
-      // {
-      //   path: 'admin/device/:id',
-      //   component: AdminDeviceComponent
-      // },
-      // {
-      //   path: 'admin/device',
-      //   component: AdminDeviceComponent
-      // },
-      // {
-      //   path: 'admin/devicetype/:id',
-      //   component: AdminDeviceTypeComponent
-      // },
-      // {
-      //   path: 'admin/devicetype',
-      //   component: AdminDeviceTypeComponent
-      // },
-      // {
-      //   path: 'admin/netmedia',
-      //   component: AdminNetmediaComponent
-      // },
-      // {
-      //   path: 'admin/netmedia/:id',
-      //   component: AdminNetmediaComponent
-      // },
-      // {
-      //   path: 'admin/storage/:id',
-      //   component: AdminHardwareStorageComponent
-      // },
-      // {
-      //   path: 'admin/storage',
-      //   component: AdminHardwareStorageComponent
-      // },
-      // {
-      //   path: 'admin/hardware/:id',
-      //   component: AdminHardwareComponent
-      // },
-      // {
-      //   path: 'admin/hardware',
-      //   component: AdminHardwareComponent
-      // },
-      // {
-      //   path: 'admin/service/nodes/:id',
-      //   component: AdminServiceNodeComponent
-      // },
-      // {
-      //   path: 'admin/service/nodes',
-      //   component: AdminServiceNodeComponent
-      // },
-      // {
-      //   path: 'admin/service/status/:id',
-      //   component: AdminServiceStatusComponent
-      // },
-      // {
-      //   path: 'admin/service/status',
-      //   component: AdminServiceStatusComponent
-      // },
-      // {
-      //   path: 'admin/service/:id',
-      //   component: AdminServiceComponent
-      // },
-      // {
-      //   path: 'admin/service',
-      //   component: AdminServiceComponent
-      // },
-      // {
-      //   path: 'admin/nodes/:id',
-      //   component: AdminNodeComponent
-      // },
-      // {
-      //   path: 'admin/nodes',
-      //   component: AdminNodeComponent
-      // },
-      {
-        path: '',
-        component: HomeComponent
-      },
-      {
-        path: 'home',
-        component: HomeComponent
-      },
-      {
-        path: 'login',
-        component: LoginComponent
-      },
-      {
-        path: 'register',
-        component: RegisterComponent
-      },
-      {
-        path: 'values/:id',
-        component: ValueComponent
-      },
-      {
-        path: 'values',
-        component: ValueComponent
-      },
-      {
-        path: '**',
-        component: NotFoundComponent
-      }
-    ])
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     ValuesService,
     AuthService,
     ErrorInterceptorProvider,
-    AlertifyService
+    AlertifyService,
+    HeaderService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

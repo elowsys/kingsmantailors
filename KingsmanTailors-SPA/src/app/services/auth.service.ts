@@ -47,6 +47,10 @@ export class AuthService extends DataService {
     return !this.jwtHelper.isTokenExpired(token);
   }
 
+  isInRole(role: string[]): boolean {
+    return false;
+  }
+
   getLoggedInUser() {
     if (this.isLoggedIn()) {
       // decode the token to extract the name

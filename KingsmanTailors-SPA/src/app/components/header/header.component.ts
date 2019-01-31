@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { HeaderService } from './../../services/header.service';
 
 @Component({
   selector: 'app-header',
@@ -6,34 +7,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  title: string;
-  bannerStyle: string;
-  showButton: boolean;
-  constructor() {}
+  constructor(private _service: HeaderService) {}
 
   ngOnInit() {
-    this.title = 'Welcome to Kingsman Tailors';
-    this.bannerStyle = 'page-banner text-center';
-    this.showButton = false;
+    this._service.initialize();
   }
 
-  getFontAwesomeIc() {
-    return '';
+  bannerStyle() {
+    return this._service.getBannerStyle();
   }
 
-  getModelTitle() {
-    return this.title;
+  buttonText() {
+    return this._service.getButtonText();
   }
 
-  getHeaderTitle() {
-    return this.title;
+  fontAwesomeIc() {
+    return this._service.getFontAwesomeIcon();
   }
 
-  getBannerStyle() {
-    return this.bannerStyle;
+  headerTitle() {
+    return this._service.getHeaderTitle();
   }
 
-  getShowButton() {
-    return this.showButton;
+  modelTitle() {
+    return this._service.getModelTitle();
+  }
+
+  showButton() {
+    return this._service.getShowButton();
+  }
+
+  buttonClick() {
+    this._service.getButtonClick();
   }
 }

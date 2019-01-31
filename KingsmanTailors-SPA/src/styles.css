@@ -108,6 +108,18 @@ body {
   padding-top: 50px;
 }
 
+.notfound-banner {
+  height: 180px;
+  background: url("./assets/images/oops.png");
+  background-position: 0 65px;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #fff;
+  border-bottom: 1px #eee solid;
+  padding-top: 50px;
+}
+
+
 .dark-overlay {
   position: absolute;
   top: 0;

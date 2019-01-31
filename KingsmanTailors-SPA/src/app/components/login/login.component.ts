@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { AuthService } from './../../services/auth.service';
 import { AlertifyService } from './../../services/alertify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,15 +10,20 @@ import { AlertifyService } from './../../services/alertify.service';
 })
 export class LoginComponent implements OnInit {
   model: any = {};
-  constructor(private auth: AuthService, private alertify: AlertifyService) {}
+
+  constructor(
+    private auth: AuthService,
+    private alertify: AlertifyService,
+    private _router: Router
+  ) {}
 
   ngOnInit() {}
 
   login() {
     this.auth.login(this.model).subscribe(
       next => {
-        console.log('Logged in!!!');
-        this.alertify.success('Logged in!!!');
+        // this.alertify.success('Logged in!!!');
+        this._router.navigate(['/home']);
       },
       err => {
         console.log(err);
