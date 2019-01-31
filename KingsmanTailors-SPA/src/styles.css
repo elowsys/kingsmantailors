@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootswatch/dist/united/bootstrap.min.css';
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import '../node_modules/font-awesome/css/font-awesome.min.css';
+@import '../node_modules/alertifyjs/build/css/alertify.min.css';
+@import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
 
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */

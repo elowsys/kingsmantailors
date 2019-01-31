@@ -6,7 +6,7 @@ import { DataService } from './data.service';
   providedIn: 'root'
 })
 export class ValuesService extends DataService {
-  constructor(private http: HttpClient) {
+  constructor(http: HttpClient) {
     super(http, '/values');
   }
 }

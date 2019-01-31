@@ -17,6 +17,8 @@ import { HomeComponent } from './components/home/home.component';
 import { ShoppingCartMiniComponent } from './components/shopping-cart-mini/shopping-cart-mini.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ErrorInterceptorProvider } from './services/error.interceptor';
+import { AlertifyService } from './services/alertify.service';
+import { BsDropdownModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { ErrorInterceptorProvider } from './services/error.interceptor';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    BsDropdownModule.forRoot(),
     RouterModule.forRoot([
       // { path: '', component: WorkareaComponent },
       // { path: ':id', component: DeviceComponent },
@@ -149,7 +152,12 @@ import { ErrorInterceptorProvider } from './services/error.interceptor';
       }
     ])
   ],
-  providers: [ValuesService, AuthService, ErrorInterceptorProvider],
+  providers: [
+    ValuesService,
+    AuthService,
+    ErrorInterceptorProvider,
+    AlertifyService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

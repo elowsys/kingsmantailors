@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertifyService } from 'src/app/services/alertify.service';
+import { AuthService } from './../../services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -9,7 +11,7 @@ export class NavComponent implements OnInit {
   // store user details for authentication
   // model: any = {};
 
-  constructor() {}
+  constructor(private alertify: AlertifyService, private _auth: AuthService) {}
 
   ngOnInit() {}
 
@@ -18,9 +20,8 @@ export class NavComponent implements OnInit {
   // }
 
   isLoggedIn() {
-    const token = localStorage.getItem('token');
-    // console.log(token);
-    return !!token;
+    // const token = localStorage.getItem('token');
+    return this._auth.isLoggedIn();
   }
 
   // Is in role
@@ -28,8 +29,14 @@ export class NavComponent implements OnInit {
     return false;
   }
 
+  getLoggedInUser() {
+    return this._auth.getLoggedInUser();
+  }
+
   logout() {
-    localStorage.removeItem('token');
-    console.log('Logged out');
+    if (this._auth.isLoggedIn()) {
+      this._auth.logout();
+      this.alertify.message('Logged out');
+    }
   }
 }
