@@ -3,16 +3,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KingsmanTailors.API.Models
 {
-    public class SuitType
+    public class OccasionLabel
     {
         [Key]
-        [Column("suitTypeId")]
-        public int SuitTypeId { get; set; }
+        [Column("labelId")]
+        public int LabelId { get; set; }
 
-        [Column("typeName")]
-        public string SuitTypeName { get; set; }
+        [Column("labelName")]
+        public string LabelName { get; set; }
 
-        [Column("typeDesc")]
+        [Column("labelDesc")]
         public string Description { get; set; }
     }
 }

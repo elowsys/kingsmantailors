@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using KingsmanTailors.API.Data;
 using KingsmanTailors.API.Helpers;
 using KingsmanTailors.API.Interfaces;
@@ -43,9 +44,11 @@ namespace KingsmanTailors.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddCors();
 
-            // services.Singleton
-            // services.AddTransient
+            services.AddAutoMapper();
+
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IDbInitializer, DbInitializer>();
 
             //setup authentication
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -64,7 +67,7 @@ namespace KingsmanTailors.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IDbInitializer dbInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -91,6 +94,7 @@ namespace KingsmanTailors.API
             }
 
             // app.UseHttpsRedirection();
+            dbInitializer.Initialize();
 
             //allow access from other apps
             app.UseCors(option => option.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());

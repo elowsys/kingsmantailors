@@ -4,14 +4,16 @@ using KingsmanTailors.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KingsmanTailors.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20190131194217_apiUserAmend")]
+    partial class apiUserAmend
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -148,7 +150,7 @@ namespace KingsmanTailors.API.Migrations
                     b.Property<string>("Description")
                         .HasColumnName("labelDesc");
 
-                    b.Property<string>("LabelName")
+                    b.Property<int>("LabelName")
                         .HasColumnName("labelName");
 
                     b.HasKey("LabelId");
@@ -200,9 +202,6 @@ namespace KingsmanTailors.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("Id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("RoleAbbrev")
-                        .HasColumnName("roleAbbrev");
 
                     b.Property<string>("RoleId")
                         .HasColumnName("roleId");

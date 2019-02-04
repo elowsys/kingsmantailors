@@ -39,10 +39,21 @@ namespace KingsmanTailors.API.Controllers
 
             var newUser = new User
             {
+                DisplayName = userForRegisterDto.DisplayName,
+                Email = userForRegisterDto.Email,
+                Gender = userForRegisterDto.Gender,
+                PhoneNumber = userForRegisterDto.PhoneNumber,
+                UserId = new Guid(userForRegisterDto.Username).ToString(),
                 Username = userForRegisterDto.Username
             };
 
             var createdUser = await _repo.Register(newUser, userForRegisterDto.Password);
+
+            //now add to role if role supplied
+            if (createdUser != null)
+            {
+                await _repo.AddToRole(createdUser, userForRegisterDto.RoleCode);
+            }
             return StatusCode(201);
         }
 
@@ -58,7 +69,9 @@ namespace KingsmanTailors.API.Controllers
             //build a token that is returned to the user that can be used for authentication
             var claims = new[]{
                 new Claim(ClaimTypes.NameIdentifier, fromDb.Id.ToString()),
-                new Claim(ClaimTypes.Name, fromDb.Username)
+                new Claim(ClaimTypes.Name, fromDb.Username),
+                new Claim(ClaimTypes.GivenName, fromDb.DisplayName),
+                new Claim(ClaimTypes.Role, fromDb.RoleCode)
             };
 
             //security key

@@ -16,10 +16,11 @@ export class AdminGuard implements CanActivate {
   canActivate(): boolean {
     // Is the user logged in?
     if (this._authService.isLoggedIn()) {
-      // Is user in role: use role guid
-      if (this._authService.isInRole(['dd', 'ff'])) {
-        return true;
-      }
+      console.log(this._router);
+      // // Is user in role: use role guid
+      // if (this._authService.isInRole(['dd', 'ff'])) {
+      return true;
+      // }
     }
     this._alertify.error('You are not authorised to access this area.');
     this._router.navigate(['/home']);

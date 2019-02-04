@@ -10,5 +10,7 @@ namespace KingsmanTailors.API.Interfaces
         Task<User> Login(string username, string password);
 
         Task<bool> UserExists(string username);
+
+        Task AddToRole(User createdUser, string roleCode);
     }
 }

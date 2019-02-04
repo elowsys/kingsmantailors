@@ -4,14 +4,16 @@ using KingsmanTailors.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KingsmanTailors.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20190131210225_apiUserRoleAmend")]
+    partial class apiUserRoleAmend
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -148,7 +150,7 @@ namespace KingsmanTailors.API.Migrations
                     b.Property<string>("Description")
                         .HasColumnName("labelDesc");
 
-                    b.Property<string>("LabelName")
+                    b.Property<int>("LabelName")
                         .HasColumnName("labelName");
 
                     b.HasKey("LabelId");

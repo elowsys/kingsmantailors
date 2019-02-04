@@ -5,15 +5,16 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ValueComponent } from './components/value/value.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
 import { AdminFabricComponent } from './components/admin-fabric/admin-fabric.component';
 
 export const appRoutes: Routes = [
-  { path: 'carts', component: HomeComponent },
+  { path: 'cart', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   {
     path: 'admin',
     runGuardsAndResolvers: 'always',
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuard],
     children: [
       { path: 'fabric/:id', component: HomeComponent },
       { path: 'fabric', component: AdminFabricComponent },

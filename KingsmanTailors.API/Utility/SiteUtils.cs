@@ -6,6 +6,11 @@ namespace KingsmanTailors.API.Utility
 {
     public class SiteUtils
     {
+        internal const string SuperUser = "Super User";
+        internal const string SalesRep = "Sales Rep";
+        internal const string DemoUser = "Demo User";
+        internal const string GuestUser = "Guest";
+
         //till I can think of a better way to retrieve usernames and passwords for database connection...
         private const string AZR_DEMO_PASSWORD = "Ayomide98_D3m0";
 

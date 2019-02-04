@@ -53,10 +53,30 @@ export class AuthService extends DataService {
 
   getLoggedInUser() {
     if (this.isLoggedIn()) {
-      // decode the token to extract the name
-      // console.log(this.decodedToken);
-      return this.decodedToken.unique_name;
+      // console.log(
+      //   this.getLoggedInRole(),
+      //   this.getLoggedInRoleCode(),
+      //   this.getLoggedInRoleAbbrev()
+      // );
+      return this.decodedToken.given_name;
     }
     return 'User';
+  }
+
+  getLoggedInRole() {
+    if (this.isLoggedIn()) {
+      return this.decodedToken.role;
+    }
+  }
+
+  getLoggedInRoleAbbrev() {
+    if (this.isLoggedIn()) {
+      return this.decodedToken.role.split('|')[1];
+    }
+  }
+  getLoggedInRoleCode() {
+    if (this.isLoggedIn()) {
+      return this.decodedToken.role.split('|')[0];
+    }
   }
 }
