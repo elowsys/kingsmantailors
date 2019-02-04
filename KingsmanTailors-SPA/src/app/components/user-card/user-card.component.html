@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-header" routerLinkActive="active">{{ user.displayName }}
+    <div class="card-header-link animate text-right p-3">
+      <a [routerLink]="['/admin/system/users/', user.userId]" class="card-link">
+        <i class="fa fa-user pr-2"></i>Details
+      </a>
+    </div>
+  </div>
+  <div class="card-body">
+    {{ user.username }}
+    <p class="lead">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. A quos culpa beatae atque veritatis quaerat.
+    </p>
+  </div>
+</div>

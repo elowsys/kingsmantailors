@@ -14,9 +14,9 @@ namespace KingsmanTailors.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IRepository _repo;
+        private readonly IRepository<User> _repo;
         private readonly IMapper _mapper;
-        public UsersController(IRepository repo, IMapper mapper)
+        public UsersController(IRepository<User> repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
@@ -25,9 +25,7 @@ namespace KingsmanTailors.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
-            // var user = await _repo.Get<User>(id);
-            var user = await _repo.GetUser(id);
-            // return Ok(user);
+            var user = await _repo.Get(id);
             var result = _mapper.Map<UserForDetailedDto>(user);
             return Ok(result);
         }
@@ -35,8 +33,7 @@ namespace KingsmanTailors.API.Controllers
         [HttpGet("uid/{userId}")]
         public async Task<IActionResult> GetUser(string userId)
         {
-            // var user = await _repo.Get<User>(id);
-            var user = await _repo.GetUser(userId);
+            var user = await _repo.Find(x => x.UserId == userId);
             var result = _mapper.Map<UserForDetailedDto>(user);
             return Ok(result);
         }
@@ -44,8 +41,7 @@ namespace KingsmanTailors.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            var users = await _repo.GetUsers();
-            // return Ok(users);
+            var users = await _repo.GetAll();
             var result = _mapper.Map<IEnumerable<UserForListDto>>(users);
             return Ok(result);
         }

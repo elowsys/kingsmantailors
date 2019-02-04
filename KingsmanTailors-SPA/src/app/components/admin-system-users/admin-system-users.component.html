@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div *ngFor="let user of users" class="card-deck mb-3">
+        <app-user-card [user]="user"></app-user-card>
+      </div>
+    </div>
+  </div>
+</div>

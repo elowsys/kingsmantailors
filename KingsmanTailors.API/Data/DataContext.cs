@@ -33,6 +33,8 @@ namespace KingsmanTailors.API.Data
 
         public DbSet<SuitDetail> SuitDetails { get; set; }
 
+        public DbSet<SuitPhoto> SuitPhotos { get; set; }
+
         public DbSet<SuitSize> SuitSizes { get; set; }
 
         public DbSet<SuitType> SuitTypes { get; set; }
@@ -62,6 +64,7 @@ namespace KingsmanTailors.API.Data
             builder.Entity<SalesTag>().ToTable("infSalesTag");
             builder.Entity<Suit>().ToTable("datSuit");
             builder.Entity<SuitDetail>().ToTable("datSuitDetail");
+            builder.Entity<SuitPhoto>().ToTable("datSuitPhoto");
             builder.Entity<SuitSize>().ToTable("infSuitSize");
             builder.Entity<SuitType>().ToTable("infSuitType");
             builder.Entity<UserRole>().ToTable("datUserRole");

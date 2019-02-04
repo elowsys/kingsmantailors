@@ -10,6 +10,8 @@ namespace KingsmanTailors.API.Helpers
         {
             CreateMap<User, UserForListDto>();
             CreateMap<User, UserForDetailedDto>();
+            CreateMap<Role, RoleForListDto>();
+            CreateMap<Role, RoleForDetailedDto>();
         }
     }
 }

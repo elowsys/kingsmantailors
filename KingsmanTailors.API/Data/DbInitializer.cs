@@ -32,8 +32,12 @@ namespace KingsmanTailors.API.Data
             }
 
             // Seed database if needed
-            // Roles
-            seedRoles();
+            // Perform roles check first
+            var doSeed = await seedRoles();
+            if (!doSeed)
+            {
+                return;
+            }
 
             seedFabrics();
 
@@ -62,14 +66,16 @@ namespace KingsmanTailors.API.Data
             seedSuitDetail();
         }
 
-        private async Task seedRoles()
+        #region "   Roles and Users "
+
+        private async Task<bool> seedRoles()
         {
             var seeded = false;
             var su = false;
             var du = false;
             var sr = false;
             var gu = false;
-            if (!_context.Roles.Any(x => x.RoleName == SiteUtils.SuperUser))
+            if (!await _context.Roles.AnyAsync(x => x.RoleName == SiteUtils.SuperUser))
             {
                 // Create Super User role
                 _context.Roles.Add(
@@ -146,6 +152,8 @@ namespace KingsmanTailors.API.Data
                     seedUserForGu();
                 }
             }
+
+            return seeded;
         }
 
         private void seedUserForSu()
@@ -386,6 +394,8 @@ namespace KingsmanTailors.API.Data
             }
             return user;
         }
+
+        #endregion
 
         private void seedFabrics()
         {
@@ -718,10 +728,10 @@ namespace KingsmanTailors.API.Data
                 // add all vent styles
                 _context.Suits.AddRangeAsync(new[]
                 {
-                    new Suit { Description="Dinner Suit", FitId=1, FrontId=1, Image="images\\stock\\1.jpg", LapelId=2, StyleId=1, SuitTypeId=1, TypeId=1, VentId = 1},
-                    new Suit { Description="Heritage occasion fit suit", FitId=3, FrontId=2, Image="images\\stock\\2.jpg", LapelId=1, StyleId=1, SuitTypeId=2, TypeId=1, VentId = 2},
-                    new Suit { Description="Simple city worker suit", FitId=4, FrontId=1, Image="images\\stock\\3.jpg", LapelId=1, StyleId=3, SuitTypeId=3, TypeId=1, VentId = 1},
-                    new Suit { Description="Simple city worker suit", FitId=4, FrontId=2, Image="images\\stock\\4.jpg", LapelId=1, StyleId=2, SuitTypeId=3, TypeId=1, VentId = 1}
+                    new Suit { Description="Dinner Suit", FitId=1, FrontId=1, LapelId=2, StyleId=1, SuitTypeId=1, TypeId=1, VentId = 1},
+                    new Suit { Description="Heritage occasion fit suit", FitId=3, FrontId=2, LapelId=1, StyleId=1, SuitTypeId=2, TypeId=1, VentId = 2},
+                    new Suit { Description="Simple city worker suit", FitId=4, FrontId=1, LapelId=1, StyleId=3, SuitTypeId=3, TypeId=1, VentId = 1},
+                    new Suit { Description="Simple city worker suit", FitId=4, FrontId=2, LapelId=1, StyleId=2, SuitTypeId=3, TypeId=1, VentId = 1}
                 });
                 _context.SaveChanges();
             }

@@ -8,6 +8,7 @@ using AutoMapper;
 using KingsmanTailors.API.Data;
 using KingsmanTailors.API.Helpers;
 using KingsmanTailors.API.Interfaces;
+using KingsmanTailors.API.Models;
 using KingsmanTailors.API.Utility;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -47,7 +48,9 @@ namespace KingsmanTailors.API
             services.AddAutoMapper();
 
             services.AddScoped<IAuthRepository, AuthRepository>();
-            services.AddScoped<IRepository, Repository>();
+            // services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IRepository<Role>, Repository<Role>>();
+            services.AddScoped<IRepository<User>, Repository<User>>();
             services.AddScoped<IDbInitializer, DbInitializer>();
 
             //setup authentication

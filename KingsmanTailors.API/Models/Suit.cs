@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,8 +13,8 @@ namespace KingsmanTailors.API.Models
         [Column("suitDesc")]
         public string Description { get; set; }
 
-        [Column("suitImg")]
-        public string Image { get; set; }
+        // [Column("suitImg")]
+        // public string Image { get; set; }
 
         [Column("suitTypeId")]
         public int SuitTypeId { get; set; }
@@ -62,5 +63,7 @@ namespace KingsmanTailors.API.Models
 
         [ForeignKey("VentId")]
         public virtual VentStyle VentStyle { get; set; }
+
+        public List<SuitPhoto> SuitPhotos { get; set; }
     }
 }

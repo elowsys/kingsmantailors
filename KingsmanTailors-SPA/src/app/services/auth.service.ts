@@ -12,12 +12,12 @@ export class AuthService extends DataService {
   decodedToken: any;
 
   constructor(http: HttpClient) {
-    super(http, '/auth');
+    super(http, 'auth/');
   }
 
   // login
   login(model: any) {
-    return this.http.post(this.BaseUrl + '/login', model).pipe(
+    return this.http.post(this.BaseUrl + 'login', model).pipe(
       map((response: any) => {
         const user = response;
         if (user) {
