@@ -48,53 +48,6 @@ namespace KingsmanTailors.API.Data
                 await DbContext.Users.FirstOrDefaultAsync(x => x.Id == (int)id);
         }
 
-        // public async Task<UserForDetailedDto> GetDetailedUser(object id)
-        // {
-        //     var byUserId = id.GetType().Name.Equals("String", StringComparison.CurrentCultureIgnoreCase);
-        //     var user = byUserId ?
-        //     await DbContext.Users.FirstOrDefaultAsync(x => x.UserId == (string)id) :
-        //     await DbContext.Users.FirstOrDefaultAsync(x => x.Id == (int)id);
-        //     if (user != null)
-        //     {
-        //         return new UserForDetailedDto
-        //         {
-        //             AccessFailedCount = user.AccessFailedCount,
-        //             AccountConfirmed = user.AccountConfirmed,
-        //             DisplayName = user.DisplayName,
-        //             Email = user.Email,
-        //             Gender = user.Gender,
-        //             Id = user.Id,
-        //             LockedOutEnabled = user.LockedOutEnabled,
-        //             LockedOutEnd = user.LockedOutEnd,
-        //             PhoneNumber = user.PhoneNumber,
-        //             UserId = user.UserId,
-        //             Username = user.Username
-        //         };
-        //     }
-        //     return default(UserForDetailedDto);
-        // }
-
-        // public async Task<List<UserForListDto>> GetUsersForList()
-        // {
-        //     var users = await DbContext.Users.ToListAsync();
-        //     if (users.Any())
-        //     {
-        //         var data = new List<UserForListDto>();
-        //         users.ForEach(x => data.Add(new UserForListDto
-        //         {
-        //             DisplayName = x.DisplayName,
-        //             Email = x.Email,
-        //             Gender = x.Gender,
-        //             Id = x.Id,
-        //             PhoneNumber = x.PhoneNumber,
-        //             UserId = x.UserId,
-        //             Username = x.Username
-        //         }));
-        //         return data;
-        //     }
-        //     return default(List<UserForListDto>);
-        // }
-
         public async Task<bool> SaveAll()
         {
             return await DbContext.SaveChangesAsync() > 0;
