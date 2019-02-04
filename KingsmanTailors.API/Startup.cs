@@ -48,7 +48,6 @@ namespace KingsmanTailors.API
             services.AddAutoMapper();
 
             services.AddScoped<IAuthRepository, AuthRepository>();
-            // services.AddScoped<IRepository, Repository>();
             services.AddScoped<IRepository<Role>, Repository<Role>>();
             services.AddScoped<IRepository<User>, Repository<User>>();
             services.AddScoped<IDbInitializer, DbInitializer>();
