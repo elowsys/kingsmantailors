@@ -7,15 +7,11 @@ using KingsmanTailors.API.Models;
 
 namespace KingsmanTailors.API.Interfaces
 {
-    // public interface IRepository
-    // {
-    // }
-
     public interface IRepository<T> where T : class
     {
-        void Add<T>(T entity) where T : class;
+        void Add<TEntity>(T entity) where TEntity : class;
 
-        void Delete<T>(T entity) where T : class;
+        void Delete<TEntity>(T entity) where TEntity : class;
 
         Task<T> Get(object id);
 
