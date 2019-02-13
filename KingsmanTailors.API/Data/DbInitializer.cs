@@ -164,12 +164,16 @@ namespace KingsmanTailors.API.Data
             .Add(setSecurityStamp(
                    new Models.User
                    {
+                       AccessFailedCount = 0,
+                       AccountConfirmed = false,
+                       LockedOutEnabled = false,
+                       LockedOutEnd = DateTime.Parse("1900-01-01T00:00:00"),
                        DisplayName = "The Bigdadi",
                        Email = "bigdadi@foo.bar",
                        Gender = "Male",
                        PhoneNumber = "01322 100000",
                        UserId = userId,
-                       Username = "bigdadi"
+                       Username = "bigdadi",
                    }, "Ktadmin_123!"));
             _context.UserRoles
             .Add(new UserRole
@@ -183,6 +187,10 @@ namespace KingsmanTailors.API.Data
             .Add(setSecurityStamp(
                     new Models.User
                     {
+                        AccessFailedCount = 0,
+                        AccountConfirmed = false,
+                        LockedOutEnabled = false,
+                        LockedOutEnd = DateTime.Parse("1900-01-01T00:00:00"),
                         DisplayName = "Madam Abie",
                         Email = "madamabie@foo.bar",
                         Gender = "Female",
@@ -207,6 +215,10 @@ namespace KingsmanTailors.API.Data
             .Add(setSecurityStamp(
                     new Models.User
                     {
+                        AccessFailedCount = 0,
+                        AccountConfirmed = false,
+                        LockedOutEnabled = false,
+                        LockedOutEnd = DateTime.Parse("1900-01-01T00:00:00"),
                         DisplayName = "Kingsman Demo",
                         Email = "ktdemo@foo.bar",
                         Gender = "Female",
@@ -231,6 +243,10 @@ namespace KingsmanTailors.API.Data
             .Add(setSecurityStamp(
                     new Models.User
                     {
+                        AccessFailedCount = 0,
+                        AccountConfirmed = false,
+                        LockedOutEnabled = false,
+                        LockedOutEnd = DateTime.Parse("1900-01-01T00:00:00"),
                         DisplayName = "Joseph Gordon-Levitt",
                         Email = "joelevitt@foo.bar",
                         Gender = "Male",
@@ -250,6 +266,10 @@ namespace KingsmanTailors.API.Data
             .Add(setSecurityStamp(
                     new Models.User
                     {
+                        AccessFailedCount = 0,
+                        AccountConfirmed = false,
+                        LockedOutEnabled = false,
+                        LockedOutEnd = DateTime.Parse("1900-01-01T00:00:00"),
                         DisplayName = "James Edward Franco",
                         Email = "jamesfranco@foo.bar",
                         Gender = "Male",
@@ -269,6 +289,10 @@ namespace KingsmanTailors.API.Data
             .Add(setSecurityStamp(
                     new Models.User
                     {
+                        AccessFailedCount = 0,
+                        AccountConfirmed = false,
+                        LockedOutEnabled = false,
+                        LockedOutEnd = DateTime.Parse("1900-01-01T00:00:00"),
                         DisplayName = "Viola Davis",
                         Email = "violadavis@foo.bar",
                         Gender = "Female",
@@ -288,6 +312,10 @@ namespace KingsmanTailors.API.Data
             .Add(setSecurityStamp(
                     new Models.User
                     {
+                        AccessFailedCount = 0,
+                        AccountConfirmed = false,
+                        LockedOutEnabled = false,
+                        LockedOutEnd = DateTime.Parse("1900-01-01T00:00:00"),
                         DisplayName = "Adepero Oduye",
                         Email = "adepero@foo.bar",
                         Gender = "Female",
@@ -307,6 +335,10 @@ namespace KingsmanTailors.API.Data
             .Add(setSecurityStamp(
                     new Models.User
                     {
+                        AccessFailedCount = 0,
+                        AccountConfirmed = false,
+                        LockedOutEnabled = false,
+                        LockedOutEnd = DateTime.Parse("1900-01-01T00:00:00"),
                         DisplayName = "Jen Aniston",
                         Email = "jenaniston@foo.bar",
                         Gender = "Female",
@@ -331,6 +363,10 @@ namespace KingsmanTailors.API.Data
             .Add(setSecurityStamp(
                     new Models.User
                     {
+                        AccessFailedCount = 0,
+                        AccountConfirmed = false,
+                        LockedOutEnabled = false,
+                        LockedOutEnd = DateTime.Parse("1900-01-01T00:00:00"),
                         DisplayName = "Chiwetel Umeadi Ejiofor",
                         Email = "chiwetel@foo.bar",
                         Gender = "Male",
@@ -350,6 +386,10 @@ namespace KingsmanTailors.API.Data
             .Add(setSecurityStamp(
                     new Models.User
                     {
+                        AccessFailedCount = 0,
+                        AccountConfirmed = false,
+                        LockedOutEnabled = false,
+                        LockedOutEnd = DateTime.Parse("1900-01-01T00:00:00"),
                         DisplayName = "Sandra Annette Bullock",
                         Email = "sbullock@foo.bar",
                         Gender = "Female",
@@ -369,6 +409,10 @@ namespace KingsmanTailors.API.Data
             .Add(setSecurityStamp(
                     new Models.User
                     {
+                        AccessFailedCount = 0,
+                        AccountConfirmed = false,
+                        LockedOutEnabled = false,
+                        LockedOutEnd = DateTime.Parse("1900-01-01T00:00:00"),
                         DisplayName = "Halle Maria Berry",
                         Email = "halleberry@foo.bar",
                         Gender = "Female",

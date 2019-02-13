@@ -15,5 +15,11 @@ namespace KingsmanTailors.API.Dtos
 
         public string PhoneNumber { get; set; }
 
+        // public int RoleId { get; set; }
+        public string RoleCode { get; set; }
+
+        public string PublicId { get; set; }
+
+        public string Url { get; set; }
     }
 }

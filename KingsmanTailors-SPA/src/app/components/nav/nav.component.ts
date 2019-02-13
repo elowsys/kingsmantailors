@@ -33,6 +33,18 @@ export class NavComponent implements OnInit {
     return this._auth.getLoggedInUser();
   }
 
+  getLoggedInUserId() {
+    return this._auth.getLoggedInUserId();
+  }
+
+  getLoggedInPhotoUrl() {
+    return this._auth.getLoggedInPhotoUrl();
+  }
+
+  hasPhotoUrl() {
+    return this._auth.getLoggedInPhotoUrl() !== '';
+  }
+
   logout() {
     if (this._auth.isLoggedIn()) {
       this._auth.logout();

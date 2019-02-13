@@ -38,19 +38,31 @@ namespace KingsmanTailors.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //setup data context for injection
+            // setup data context for injection
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(SiteUtils.SqlConnectionString(Configuration)));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddCors();
 
+            // Add cloudinary settings
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
+
+            // register automapper for injection
             services.AddAutoMapper();
 
-            services.AddScoped<IAuthRepository, AuthRepository>();
-            services.AddScoped<IRepository<Role>, Repository<Role>>();
-            services.AddScoped<IRepository<User>, Repository<User>>();
+            // register database initializer for injection
             services.AddScoped<IDbInitializer, DbInitializer>();
+
+            // register repositories for injection
+            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IRepository<Fabric>, Repository<Fabric>>();
+            services.AddScoped<IRepository<OccasionFit>, Repository<OccasionFit>>();
+            services.AddScoped<IRepository<Role>, Repository<Role>>();
+            services.AddScoped<IRepository<Suit>, Repository<Suit>>();
+            services.AddScoped<IRepository<SuitPhoto>, Repository<SuitPhoto>>();
+            services.AddScoped<IRepository<User>, Repository<User>>();
+            services.AddScoped<IRepository<UserRole>, Repository<UserRole>>();
 
             //setup authentication
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

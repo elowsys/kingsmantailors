@@ -31,6 +31,24 @@ namespace KingsmanTailors.API.Data
             await DbContext.SaveChangesAsync();
         }
 
+        public async Task<User> GetUser(string id)
+        {
+            //return await DbContext.Users.FirstOrDefaultAsync(x => x.UserId == id);
+            var userobj = await (from u in DbContext.Users
+                                 join ur in DbContext.UserRoles on u.UserId equals ur.UserId
+                                 join r in DbContext.Roles on ur.RoleId equals r.RoleId
+                                 where ur.UserId == id
+                                 select new { u, r }).FirstOrDefaultAsync();
+
+            if (userobj != null)
+            {
+                var user = userobj.u;
+                user.RoleCode = userobj.r.RoleId + "|" + userobj.r.RoleAbbrev;
+                return user;
+            }
+            return null;
+        }
+
         public async Task<User> Login(string username, string password)
         {
             var user = await DbContext.Users

@@ -11,14 +11,20 @@ namespace KingsmanTailors.API.Interfaces
     {
         void Add<TEntity>(T entity) where TEntity : class;
 
+        Task<bool> Any(Expression<Func<T, bool>> filter);
+
         void Delete<TEntity>(T entity) where TEntity : class;
 
-        Task<T> Get(object id);
-
         Task<T> Find(Expression<Func<T, bool>> filter);
+
+        Task<T> Find<TInc>(Expression<Func<T, bool>> filter, Expression<Func<T, TInc>> include);
+
+        Task<T> Get(object id);
 
         Task<IEnumerable<T>> GetAll();
 
         Task<bool> SaveAll();
+
+        Task<IEnumerable<T>> ToList(Expression<Func<T, bool>> filter);
     }
 }

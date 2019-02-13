@@ -25,5 +25,11 @@ namespace KingsmanTailors.API.Dtos
         public DateTime LockedOutEnd { get; set; }
 
         public int AccessFailedCount { get; set; }
+
+        public string RoleCode { get; set; }
+
+        public string PublicId { get; set; }
+
+        public string Url { get; set; }
     }
 }

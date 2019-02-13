@@ -7,11 +7,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { appRoutes } from './routes';
 import { AuthGuard } from './guards/auth.guard';
+import { PreventUnsavedChangesGuard } from './guards/prevent-unsaved-changes.guard';
+import { PreventUnsavedProfileChangesGuard } from './guards/prevent-unsaved-profile-changes.guard';
+
+import { RoleResolver } from './resolvers/role.resolver';
 import { UserDetailResolver } from './resolvers/user-detail.resolver';
 import { UserListResolver } from './resolvers/user-list.resolver';
+import { UserRoleResolver } from './resolvers/user-role.resolver';
+import { UserProfileResolver } from './resolvers/user-profile.resolver';
 
 import { ValuesService } from './services/values.service';
 import { AuthService } from './services/auth.service';
@@ -50,6 +57,9 @@ import { AdminAppointmentComponent } from './components/admin-appointment/admin-
 import { AdminSystemUsersComponent } from './components/admin-system-users/admin-system-users.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { AdminSystemUserDetailComponent } from './components/admin-system-user-detail/admin-system-user-detail.component';
+import { AdminSystemUserEditComponent } from './components/admin-system-user-edit/admin-system-user-edit.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -85,7 +95,10 @@ export function tokenGetter() {
     AdminAppointmentComponent,
     AdminSystemUsersComponent,
     UserCardComponent,
-    AdminSystemUserDetailComponent
+    AdminSystemUserDetailComponent,
+    AdminSystemUserEditComponent,
+    UserProfileComponent,
+    BreadcrumbsComponent
   ],
   imports: [
     BrowserModule,
@@ -96,6 +109,7 @@ export function tokenGetter() {
     TabsModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     NgxGalleryModule,
+    FileUploadModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -113,7 +127,12 @@ export function tokenGetter() {
     HeaderService,
     UserService,
     UserDetailResolver,
-    UserListResolver
+    UserListResolver,
+    UserRoleResolver,
+    UserProfileResolver,
+    RoleResolver,
+    PreventUnsavedChangesGuard,
+    PreventUnsavedProfileChangesGuard
   ],
   bootstrap: [AppComponent]
 })

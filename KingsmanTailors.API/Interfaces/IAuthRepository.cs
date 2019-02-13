@@ -5,12 +5,14 @@ namespace KingsmanTailors.API.Interfaces
 {
     public interface IAuthRepository
     {
-        Task<User> Register(User user, string password);
+        Task AddToRole(User createdUser, string roleCode);
+
+        Task<User> GetUser(string id);
 
         Task<User> Login(string username, string password);
 
-        Task<bool> UserExists(string username);
+        Task<User> Register(User user, string password);
 
-        Task AddToRole(User createdUser, string roleCode);
+        Task<bool> UserExists(string username);
     }
 }

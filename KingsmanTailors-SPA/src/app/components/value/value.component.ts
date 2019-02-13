@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ValuesService } from './../../services/values.service';
-import { HttpClient } from '@angular/common/http';
 import { HeaderService } from 'src/app/services/header.service';
 
 @Component({
@@ -17,14 +16,17 @@ export class ValueComponent implements OnInit {
 
   ngOnInit() {
     this.getValues();
-    this._headerService.initialize('API Test');
+    this._headerService.initialize(
+      'API Test',
+      'admin-banner text-center',
+      'fa fa-map-marker'
+    );
   }
 
   getValues() {
-    this._service.getAll().subscribe(
+    this._service.getValues().subscribe(
       response => {
         this.values = response;
-        console.log(this.values);
       },
       err => {
         console.log(err);

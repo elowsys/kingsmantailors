@@ -3,6 +3,7 @@ import { DataService } from './data.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
+import { Role } from '../models/role';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +14,14 @@ export class UserService extends DataService {
   }
 
   getUsers(): Observable<User[]> {
-    // return this.http.get<User[]>(this.BaseUrl);
     return this.getAll<User[]>();
   }
 
   getUser(id: string): Observable<User> {
-    // return this.http.get<User>(this.BaseUrl + '/uid/' + id);
     return this.getSpecial<User>('/uid/' + id);
+  }
+
+  getUserRole(id: string): Observable<Role> {
+    return this.getSpecial<Role>('/rid/' + id);
   }
 }

@@ -23,5 +23,7 @@ namespace KingsmanTailors.API.Dtos
         public string RoleCode { get; set; }
 
         public string Gender { get; set; }
+
+        // public string PublicId { get; set; }
     }
 }

@@ -47,6 +47,12 @@ namespace KingsmanTailors.API.Models
         [Column("userId")]
         public string UserId { get; set; }
 
+        [Column("publicId")]
+        public string PublicId { get; set; }
+
+        [Column("photoUrl")]
+        public string Url { get; set; }
+
         [NotMapped]
         public string RoleCode { get; set; }
     }

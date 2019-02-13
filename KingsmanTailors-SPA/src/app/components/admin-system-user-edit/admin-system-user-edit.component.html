@@ -1,0 +1,100 @@
+<div class="container mt-5">
+  <!-- <div class="row">
+    <div class="col pb-2">
+      <h4>Edit {{user.displayName}}</h4>
+    </div>
+  </div> -->
+  <div class="row">
+    <div class="col-md-9 col-sm-8">
+      <div class="tab-panel">
+        <form #editUser="ngForm" id="editUser" (ngSubmit)="updateUser()">
+          <tabset class="user-tabset">
+            <tab heading="About" class="p-3">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend text-right">
+                  <div class="input-group-text input-group-label">Username</div>
+                </div>
+                <!-- <input type="text" [(ngModel)]="user.username" name="username" class="form-control" /> -->
+                <div class="form-control text-muted">{{user.username}}</div>
+              </div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text input-group-label">Name</div>
+                </div>
+                <input type="text" [(ngModel)]="user.displayName" name="displayName" class="form-control" />
+              </div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend text-right">
+                  <span class="input-group-text input-group-label">Email</span>
+                </div>
+                <input type="text" [(ngModel)]="user.email" name="email" class="form-control" />
+              </div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend text-right">
+                  <span class="input-group-text input-group-label">Phone</span>
+                </div>
+                <input type="text" [(ngModel)]="user.phoneNumber" name="phoneNumber" class="form-control" />
+              </div>
+            </tab>
+            <tab heading="Account">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text input-group-label">Role</span>
+                </div>
+                <select class="form-control" name="roleCode" [(ngModel)]="user.roleCode">
+                  <option *ngFor="let role of roles" [value]="role.roleId" [selected]="user.username">{{role.roleName}}</option>
+                </select>
+              </div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text input-group-label">Activated</span>
+                </div>
+                <div class="form-control">
+                  <input type="checkbox" [(ngModel)]="user.accountConfirmed" name="accountConfirmed" class="form-control-sm" />
+                </div>
+              </div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text input-group-label">Locked</span>
+                </div>
+                <div class="form-control">
+                  <input type="checkbox" [(ngModel)]="user.lockedOutEnabled" (click)="lockUser()" name="lockedOutEnabled"
+                    class="form-control-sm" />
+                </div>
+              </div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text input-group-label">Locked till</span>
+                </div>
+                <div class="form-control text-muted">{{user.lockedOutEnd | date: 'yyyy-MM-ddTHH:mm:ss'}}</div>
+              </div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text input-group-label">Fail count</span>
+                </div>
+                <div class="form-control text-muted">{{user.accessFailedCount}}</div>
+              </div>
+            </tab>
+          </tabset>
+        </form>
+      </div>
+      <div *ngIf="editUser.dirty" class="row pt-3">
+        <div class="col">
+          <div class="alert alert-info">
+            <strong>Info:</strong><br />You have made changes. Any unsaved changes will be lost!
+          </div>
+        </div>
+      </div>
+      <div class="btn-group d-flex pt-3">
+        <button class="btn btn-primary" [routerLink]="['/admin/system/users/edit', user.userId]" [disabled]="!editUser.dirty"
+          form="editUser">
+          <i class="fa fa-edit pr-2"></i>Save
+        </button>
+        <button class="btn btn-warning" [routerLink]="['/admin/system/users', user.userId]">
+          <i class="fa fa-ban pr-2"></i>Cancel
+        </button>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-4"></div>
+  </div>
+</div>

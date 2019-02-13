@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from './../../services/user.service';
-import { AlertifyService } from 'src/app/services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
+// import {
+//   NgxGalleryOptions,
+//   NgxGalleryImage,
+//   NgxGalleryAnimation
+// } from 'ngx-gallery';
+
+import { AuthService } from 'src/app/services/auth.service';
+
+import { Role } from 'src/app/models/role';
 import { User } from 'src/app/models/user';
-import {
-  NgxGalleryOptions,
-  NgxGalleryImage,
-  NgxGalleryAnimation
-} from 'ngx-gallery';
+import { RoleService } from 'src/app/services/role.service';
+import { UserService } from 'src/app/services/user.service';
+import { HeaderService } from 'src/app/services/header.service';
 
 @Component({
   selector: 'app-admin-system-user-detail',
@@ -16,20 +21,31 @@ import {
 })
 export class AdminSystemUserDetailComponent implements OnInit {
   user: User;
+  role: Role;
   // galleryOptions: NgxGalleryOptions[];
   // galleryImages: NgxGalleryImage[];
 
   constructor(
+    // private _alertify: AlertifyService,
+    // private _authService: AuthService,
+    // private _roleService: RoleService,
     private _userService: UserService,
-    private _alertify: AlertifyService,
+    private _headerService: HeaderService,
     private _route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    // this.loadUser();
     this._route.data.subscribe(data => {
       this.user = data['user'];
+      this.role = data['role'];
+      // console.log(this.user, this.role);
     });
+
+    this._headerService.initialize(
+      'System Users - Viewing ' + this.user.displayName,
+      'admin-banner text-center',
+      'fa fa-user'
+    );
 
     // this.galleryOptions = [
     //   {

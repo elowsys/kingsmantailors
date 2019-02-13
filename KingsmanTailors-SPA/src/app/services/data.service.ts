@@ -21,8 +21,11 @@ export class DataService {
     return this._baseUrl + this._pathPrefix;
   }
 
+  create<T>(model: any) {
+    return this.http.post<T>(this.BaseUrl, model);
+  }
+
   getAll<T>() {
-    // return this.http.get<T>(this.BaseUrl, httpOptions);
     return this.http.get<T>(this.BaseUrl);
   }
 
@@ -34,7 +37,11 @@ export class DataService {
     return this.http.get<T>(this.BaseUrl + id);
   }
 
-  create<T>(model: any) {
-    return this.http.post<T>(this.BaseUrl, model);
+  update<T>(id: any, model: any) {
+    return this.http.put<T>(this.BaseUrl + '/' + id, model);
+  }
+
+  updateSpecial(id: any, model: any) {
+    return this.http.put(this.BaseUrl + '/' + id, model);
   }
 }

@@ -27,10 +27,13 @@
       <li *ngIf="isLoggedIn()" class="nav-item">
         <div dropdown class="dropdown">
           <a href="#" class="dropdown-toggle text-light text-link" dropdownToggle (click)="false">
-            <i class="fa fa-user-circle pr-2"></i>Hi {{getLoggedInUser() | titlecase}}
+            <i *ngIf="!hasPhotoUrl()" class="fa fa-user pr-2"></i>
+            <img *ngIf="hasPhotoUrl()" [src]="getLoggedInPhotoUrl()" class="img-fluid img-login rounded-circle">
+            Hi {{getLoggedInUser() |
+            titlecase}}
           </a>
           <div class="dropdown-menu" *dropdownMenu>
-            <a [routerLink]="['/profile']" class="dropdown-item" href="#"><i class="fa fa-user-circle pr-2"></i>Profile</a>
+            <a [routerLink]="['/profile', getLoggedInUserId()]" class="dropdown-item" href="#"><i class="fa fa-user pr-2"></i>Profile</a>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item" (click)="logout()"><i class="fa fa-user-times pr-2"></i>Logout</a>
           </div>

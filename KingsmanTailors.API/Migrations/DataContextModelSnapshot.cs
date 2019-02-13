@@ -252,9 +252,6 @@ namespace KingsmanTailors.API.Migrations
                     b.Property<int>("FrontId")
                         .HasColumnName("frontId");
 
-                    b.Property<string>("Image")
-                        .HasColumnName("suitImg");
-
                     b.Property<int>("LapelId")
                         .HasColumnName("lapelId");
 
@@ -316,6 +313,35 @@ namespace KingsmanTailors.API.Migrations
                     b.HasIndex("SuitId");
 
                     b.ToTable("datSuitDetail");
+                });
+
+            modelBuilder.Entity("KingsmanTailors.API.Models.SuitPhoto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("photoId")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnName("photoDesc");
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnName("isDefault");
+
+                    b.Property<string>("PublicId")
+                        .HasColumnName("publicId");
+
+                    b.Property<int>("SuitId")
+                        .HasColumnName("suitId");
+
+                    b.Property<string>("Url")
+                        .HasColumnName("photoUrl");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SuitId");
+
+                    b.ToTable("datSuitPhoto");
                 });
 
             modelBuilder.Entity("KingsmanTailors.API.Models.SuitSize", b =>
@@ -388,8 +414,14 @@ namespace KingsmanTailors.API.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnName("phoneNumber");
 
+                    b.Property<string>("PublicId")
+                        .HasColumnName("publicId");
+
                     b.Property<byte[]>("SecurityStamp")
                         .HasColumnName("securityStamp");
+
+                    b.Property<string>("Url")
+                        .HasColumnName("photoUrl");
 
                     b.Property<string>("UserId")
                         .HasColumnName("userId");
@@ -511,6 +543,14 @@ namespace KingsmanTailors.API.Migrations
                 {
                     b.HasOne("KingsmanTailors.API.Models.Suit", "Suit")
                         .WithMany()
+                        .HasForeignKey("SuitId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("KingsmanTailors.API.Models.SuitPhoto", b =>
+                {
+                    b.HasOne("KingsmanTailors.API.Models.Suit")
+                        .WithMany("SuitPhotos")
                         .HasForeignKey("SuitId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

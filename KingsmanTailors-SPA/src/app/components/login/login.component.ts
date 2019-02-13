@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   model: any = {};
 
   constructor(
-    private auth: AuthService,
+    private authService: AuthService,
     private alertify: AlertifyService,
     private _router: Router
   ) {}
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   login() {
-    this.auth.login(this.model).subscribe(
+    this.authService.login(this.model).subscribe(
       next => {
         // this.alertify.success('Logged in!!!');
         this._router.navigate(['/home']);

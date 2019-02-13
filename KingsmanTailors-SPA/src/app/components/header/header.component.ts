@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
     return this._service.getButtonText();
   }
 
-  fontAwesomeIc() {
+  fontAwesomeIcon() {
     return this._service.getFontAwesomeIcon();
   }
 

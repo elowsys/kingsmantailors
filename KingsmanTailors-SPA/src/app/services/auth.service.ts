@@ -23,7 +23,7 @@ export class AuthService extends DataService {
         if (user) {
           localStorage.setItem('token', user.token);
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
-          console.log(user.token, this.decodedToken);
+          // console.log(user.token, this.decodedToken);
         }
       })
     );
@@ -53,12 +53,14 @@ export class AuthService extends DataService {
 
   getLoggedInUser() {
     if (this.isLoggedIn()) {
-      // console.log(
-      //   this.getLoggedInRole(),
-      //   this.getLoggedInRoleCode(),
-      //   this.getLoggedInRoleAbbrev()
-      // );
       return this.decodedToken.given_name;
+    }
+    return 'User';
+  }
+
+  getLoggedInUserId() {
+    if (this.isLoggedIn()) {
+      return this.decodedToken.primarysid;
     }
     return 'User';
   }
@@ -66,6 +68,29 @@ export class AuthService extends DataService {
   getLoggedInRole() {
     if (this.isLoggedIn()) {
       return this.decodedToken.role;
+    }
+  }
+
+  getLoggedInPhotoUrl() {
+    if (this.isLoggedIn()) {
+      return this.decodedToken.website;
+    }
+  }
+
+  resetLoginToken() {
+    if (this.isLoggedIn()) {
+      return this.http
+        .get(this.BaseUrl + 'refresh/' + this.getLoggedInUserId())
+        .pipe(
+          map((response: any) => {
+            const user = response;
+            if (user) {
+              localStorage.setItem('token', user.token);
+              this.decodedToken = this.jwtHelper.decodeToken(user.token);
+              // console.log(user.token, this.decodedToken);
+            }
+          })
+        );
     }
   }
 

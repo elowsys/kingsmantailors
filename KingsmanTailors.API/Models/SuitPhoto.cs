@@ -20,5 +20,8 @@ namespace KingsmanTailors.API.Models
 
         [Column("isDefault")]
         public bool IsDefault { get; set; }
+
+        [Column("publicId")]
+        public string PublicId { get; set; }
     }
 }

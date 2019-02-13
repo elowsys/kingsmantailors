@@ -66,12 +66,54 @@ namespace KingsmanTailors.API.Controllers
                 return Unauthorized();
             }
 
+            //write token into response and send back to user
+            var result = getSecurityToken(fromDb);
+            return Ok(new { token = result });
+        }
+
+        [HttpGet("refresh/{id}")]
+        public async Task<IActionResult> RefreshUser(string id)
+        {
+            // make sure that the credentials match and only doing for self
+            var editorId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            if (editorId == 0)
+            {
+                return Unauthorized();
+            }
+
+            var editorUserId = User.FindFirst(ClaimTypes.PrimarySid).Value;
+            if (string.IsNullOrEmpty(editorUserId))
+            {
+                return Unauthorized();
+            }
+
+            // make sure that this user is of admin role
+            var editor = await _repo.GetUser(id);
+            if (editor == null)
+            {
+                return BadRequest();
+            }
+
+            // make sure that the user is the same as in token
+            if (editor.UserId == editorUserId)
+            {
+                var result = getSecurityToken(editor);
+                return Ok(new { token = result });
+            }
+
+            return Unauthorized();
+        }
+
+        private string getSecurityToken(User fromDb)
+        {
             //build a token that is returned to the user that can be used for authentication
             var claims = new[]{
                 new Claim(ClaimTypes.NameIdentifier, fromDb.Id.ToString()),
                 new Claim(ClaimTypes.Name, fromDb.Username),
                 new Claim(ClaimTypes.GivenName, fromDb.DisplayName),
-                new Claim(ClaimTypes.Role, fromDb.RoleCode)
+                new Claim(ClaimTypes.Role, fromDb.RoleCode),
+                new Claim(ClaimTypes.Webpage, fromDb.Url??""),
+                new Claim(ClaimTypes.PrimarySid, fromDb.UserId)
             };
 
             //security key
@@ -84,14 +126,14 @@ namespace KingsmanTailors.API.Controllers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddDays(1),
+                Expires = DateTime.Now.AddHours(12),
                 SigningCredentials = creds
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            //write token into response and send back to user
-            return Ok(new { token = tokenHandler.WriteToken(token) });
+
+            return tokenHandler.WriteToken(token);
         }
     }
 }

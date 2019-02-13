@@ -10,4 +10,8 @@ export interface User {
   lockedOutEnabled?: boolean;
   lockedOutEnd?: Date;
   accessFailedCount?: number;
+  roleCode: string;
+  publicId: string;
+  url: string;
+  primarysid: string;
 }
